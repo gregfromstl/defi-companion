@@ -1,24 +1,26 @@
 "use client";
 
+import { Box, Input } from "@chakra-ui/react";
 import { useChat } from "ai/react";
 
 export default function Chat() {
     const { messages, input, handleInputChange, handleSubmit } = useChat();
 
     return (
-        <div>
+        <Box w="300px">
             {messages.map((m) => (
-                <div key={m.id}>
+                <Box key={m.id}>
                     {m.role}: {m.content}
-                </div>
+                </Box>
             ))}
 
             <form onSubmit={handleSubmit}>
-                <label>
-                    Say something...
-                    <input value={input} onChange={handleInputChange} />
-                </label>
+                <Input
+                    placeholder="Say something..."
+                    value={input}
+                    onChange={handleInputChange}
+                />
             </form>
-        </div>
+        </Box>
     );
 }
