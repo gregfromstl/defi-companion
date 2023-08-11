@@ -2,6 +2,12 @@
 
 import Provider from "./provider";
 import Head from "next/head";
+import { GlobalContextProvider } from '@/context/Globals';
+import { Flex } from "@chakra-ui/react";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+
+
 export default function RootLayout({
   children,
 }: {
@@ -16,7 +22,15 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+        <GlobalContextProvider>
+            <Flex justify="center" align="center" flexDir={'column'} bg={'#09090B'} height={'100vh'} justifyContent={'space-between'} width={'100vw'} gap={4}>
+            <Navigation />
+          {children}
+          <Footer/>
+          </Flex>
+          </GlobalContextProvider>
+          </Provider>
       </body>
     </html>
   );
