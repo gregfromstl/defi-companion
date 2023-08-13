@@ -1,6 +1,6 @@
 "use client"
 import { Flex, Heading } from "@chakra-ui/react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+// import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Triangle } from "@phosphor-icons/react";
 
 export default function Navigation () {
@@ -12,7 +12,7 @@ export default function Navigation () {
                 Defi Companion
                 </Heading>
 
-            <ConnectButton />
+            {/* <ConnectButton /> */}
             </Flex>
     )
 }

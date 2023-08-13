@@ -1,19 +1,20 @@
-import React, { useRef, useLayoutEffect } from 'react';
-import { 
-  Avatar, 
-  Box, 
-  Center, 
-  Text, 
-  Input, 
-  Button, 
-  Flex, 
-  Spacer, 
-  FormControl, 
-  HStack, 
-  Circle
+"use client"
+import {
+  Box,
+  Button,
+  Center,
+  Circle,
+  Flex,
+  FormControl,
+  HStack,
+  Input,
+  Spacer,
+  Text
 } from "@chakra-ui/react";
+import { Robot, UserCircle } from '@phosphor-icons/react';
 import { useChat } from "ai/react";
-import { Person, Robot, UserCircle } from '@phosphor-icons/react';
+import { useLayoutEffect, useRef } from 'react';
+import ReactMarkdown from "react-markdown";
 
 
 
@@ -31,9 +32,15 @@ const MessageCard = ({ id, role, content }:any) => (
     <Circle size={12} bg={role == 'assistant' ? 'purple' : 'blue'} color='gray.50' alignItems={'center'}>
     { role == 'assistant' ? <Robot size={18} weight="fill" /> : <UserCircle size={18} weight="fill" />}
     </Circle>
-    <Text>
-        {content}
-    </Text>
+
+    {(role == 'assistant' )?
+
+    <Text flexDirection={'column'} color={'white'} bg="blackAlpha.700" p={8} borderRadius={4}>
+    <ReactMarkdown>
+      {content}
+    </ReactMarkdown>
+        </Text>
+        : <Text> {content} </Text>}
   </HStack>
 )
 
@@ -46,7 +53,7 @@ useLayoutEffect(() => {
 }, [messages]);
 
   return (
-    <Center minH='80vh' maxHeight='200vh' maxW="900px" w='100vw'  flexDir='column' p={8} justifyContent='space-between' py={8}>
+    <Center height='80vh' maxW="900px" w='100vw' overflowY={'auto'} flexDir='column' p={8} justifyContent='space-between' py={8}>
         <Box h='100%' w='100%' gap={4} overflowY='auto' mb={4}>
             {messages.map((m) => (
                 <MessageCard id={m.id} role={m.role} content={m.content} key={m.id}/>

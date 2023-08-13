@@ -24,7 +24,7 @@ export default function RootLayout({
       <body>
         <Provider>
         <GlobalContextProvider>
-            <Flex justify="center" align="center" flexDir={'column'} bg={'#09090B'} height={'100vh'} justifyContent={'space-between'} width={'100vw'} gap={4}>
+            <Flex justify="center" align="center" flexDir={'column'} bg={'#09090B'} minH={'100vh'} justifyContent={'space-between'} width={'100vw'} gap={4}>
             <Navigation />
           {children}
           <Footer/>
